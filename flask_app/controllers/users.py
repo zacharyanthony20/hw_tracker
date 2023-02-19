@@ -104,3 +104,10 @@ def validate_login():
     session['last_name'] = user.last_name
     session['route'] = 'login'
     return redirect('/dashboard')
+
+@app.route('/logout')
+def logout():
+    # clear the session
+    session.clear()
+    # redirect the user to the home page or any other page
+    return redirect('/')
