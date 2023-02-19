@@ -12,16 +12,15 @@
 
         <form action="/register" method="post" class="col-4 p-4 bg-dark text-light">
             <h2 class="text-primary">Register</h2>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                <div class="alert alert-danger" role="alert">
-                    
-                        {% for message in messages %}
-                        <p>{{message}}</p>
-                        {% endfor %}
-                </div>
-                {% endif %}
-            {% endwith %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                    {% if category == 'registration' %}
+                        <div class="alert alert-danger" role="alert">
+                            <p>{{ message }}</p>
+                        </div>
+                    {% endif %}
+            {% endfor %}
+        {% endwith %}
             <div class="form-group">
                 <label for="first_name">First Name:</label>
                 <input type="text" name="first_name" class="form-control">
@@ -46,16 +45,15 @@
         </form>
         <form action="/login" method="post" class="col-4 p-4 bg-dark text-light">
             <h2 class="text-success">Login</h2>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                <div class="alert alert-danger" role="alert">
-                    
-                        {% for message in messages %}
-                        <p>{{message}}</p>
-                        {% endfor %}
-                </div>
-                {% endif %}
-            {% endwith %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                    {% if category == 'login' %}
+                        <div class="alert alert-danger" role="alert">
+                            <p>{{ message }}</p>
+                        </div>
+                    {% endif %}
+            {% endfor %}
+        {% endwith %}
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="text" name="email" class="form-control">
